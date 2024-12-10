@@ -23,16 +23,16 @@ issues.
 
 To develop this project, install these dependencies:
 
--   [Visual Studio Code](https://code.visualstudio.com/Download)
--   [NodeJS and NPM](https://nodejs.org/) (latest version of both)
--   [Typescript](https://www.typescriptlang.org/)
--   [Git](https://git-scm.com/downloads)
+- ✅  [Visual Studio Code](https://code.visualstudio.com/Download)
+-✅   [NodeJS and NPM](https://nodejs.org/) (latest version of both)
+- ✅  [Typescript](https://www.typescriptlang.org/)
+- ✅  [Git](https://git-scm.com/downloads)
     -   (optional) Set `git blame` to ignore noise-commits: `git config blame.ignoreRevsFile .git-blame-ignore-revs`
--   [AWS `git secrets`](https://github.com/awslabs/git-secrets)
--   [TypeScript + Webpack Problem Matcher](https://marketplace.visualstudio.com/items?itemName=amodio.tsl-problem-matcher)
-    -   Not installing will result in the following error during building: `Error: Invalid problemMatcher reference: $ts-webpack-watch`
--   (optional) [AWS SAM CLI](https://docs.aws.amazon.com/serverless-application-model/latest/developerguide/serverless-sam-cli-install.html)
--   (optional) [Docker](https://docs.docker.com/get-docker/)
+-✅   [AWS `git secrets`](https://github.com/awslabs/git-secrets)
+-✅   [TypeScript + Webpack Problem Matcher](https://marketplace.visualstudio.com/items?itemName=amodio.tsl-problem-matcher)
+    -✅   Not installing will result in the following error during building: `Error: Invalid problemMatcher reference: $ts-webpack-watch`
+-✅   (optional) [AWS SAM CLI](https://docs.aws.amazon.com/serverless-application-model/latest/developerguide/serverless-sam-cli-install.html)
+-✅   (optional) [Docker](https://docs.docker.com/get-docker/)
 
 Then clone the repository and install NPM packages:
 
@@ -63,24 +63,24 @@ When you launch the extension or run tests from VSCode, it will automatically bu
 
 You can also use these NPM tasks (see `npm run` for the full list):
 
--   To build once:
+- ✅  To build once:
     ```
     npm run compile
     ```
--   To build and watch for file changes:
+- ✅  To build and watch for file changes:
     ```
     npm run watch
     ```
--   To build a release artifact (VSIX):
+- ✅  To build a release artifact (VSIX):
     ```
     npm run package
     ```
-    -   This uses webpack which may exhaust the default Node heap size on Linux.
+    - ✅  This uses webpack which may exhaust the default Node heap size on Linux.
         To fix this set `--max-old-space-size`:
         ```
         export NODE_OPTIONS=--max-old-space-size=8192
         ```
--   To build a "debug" VSIX artifact (faster and does not minify):
+- ✅  To build a "debug" VSIX artifact (faster and does not minify):
     ```
     npm run package -- --debug
     ```
@@ -89,45 +89,45 @@ You can also use these NPM tasks (see `npm run` for the full list):
 
 ### Guidelines
 
--   Architecture: [arch_overview.md](./docs/arch_overview.md)
--   Project patterns and practices: [CODE_GUIDELINES.md](./docs/CODE_GUIDELINES.md)
--   [VS Code Extension Guidelines](https://code.visualstudio.com/api/references/extension-guidelines)
-    -   [Webview guidance](https://code.visualstudio.com/api/ux-guidelines/webviews)
--   [VS Code API Documentation](https://code.visualstudio.com/api/references/vscode-api)
--   [VS Code Extension Capabilities](https://code.visualstudio.com/api/extension-capabilities/common-capabilities)
+- ✅  Architecture: [arch_overview.md](./docs/arch_overview.md)
+- ✅  Project patterns and practices: [CODE_GUIDELINES.md](./docs/CODE_GUIDELINES.md)
+- ✅  [VS Code Extension Guidelines](https://code.visualstudio.com/api/references/extension-guidelines)
+    - ✅  [Webview guidance](https://code.visualstudio.com/api/ux-guidelines/webviews)
+- ✅  [VS Code API Documentation](https://code.visualstudio.com/api/references/vscode-api)
+- ✅  [VS Code Extension Capabilities](https://code.visualstudio.com/api/extension-capabilities/common-capabilities)
 
 ### Prerelease artifacts
 
--   CI automatically publishes GitHub [prereleases](https://github.com/aws/aws-toolkit-vscode/releases)
+- ✅  CI automatically publishes GitHub [prereleases](https://github.com/aws/aws-toolkit-vscode/releases)
     for `master` and `feature/x` branches, including `.vsix` artifacts which can
     be used to test the latest build for that branch. Each prerelease and its
     artifact are continually updated from the HEAD of its branch.
--   PR artifacts: each pull request is processed by an AWS CodeBuild job which
+- ✅  PR artifacts: each pull request is processed by an AWS CodeBuild job which
     runs all tests and provides the build result via the _Details_ link as shown
     below.
-    -   <img src="./docs/images/ci-artifact.png" alt="CI artifact" width="512"/>
+    - ✅  <img src="./docs/images/ci-artifact.png" alt="CI artifact" width="512"/>
 
 ### Debug failing integration tests
 
 -   Check for recent changes in each of these projects:
-    -   https://github.com/microsoft/vscode-python (releases)
-    -   https://github.com/aws/aws-sam-cli/releases
-    -   https://github.com/aws/aws-sam-cli-app-templates/ (`master` branch, not releases!)
+    - ✅  https://github.com/microsoft/vscode-python (releases)
+    - ✅  https://github.com/aws/aws-sam-cli/releases
+    - ✅  https://github.com/aws/aws-sam-cli-app-templates/ (`master` branch, not releases!)
 
 ### Technical notes
 
--   VSCode extensions have a [100MB](https://github.com/Microsoft/vscode-vsce/issues/179) file size limit.
--   `src/testFixtures/` is excluded in `.vscode/settings.json`, to prevent VSCode
+- ✅  VSCode extensions have a [100MB](https://github.com/Microsoft/vscode-vsce/issues/179) file size limit.
+- ✅  `src/testFixtures/` is excluded in `.vscode/settings.json`, to prevent VSCode
     from treating its files as project files.
--   The codebase provides [globals](https://github.com/aws/aws-toolkit-vscode/blob/c6ad8ecd602fab64b563519dc2a455ee0b252dde/src/shared/extensionGlobals.ts#L55),
+- ✅  The codebase provides [globals](https://github.com/aws/aws-toolkit-vscode/blob/c6ad8ecd602fab64b563519dc2a455ee0b252dde/src/shared/extensionGlobals.ts#L55),
     which must be used instead of some common javascript globals. In particular, clock-related things like `Date` and `setTimeout`
     must not be used directly, instead use `globals.clock.Date` and `globals.clock.setTimeout`. [#2343](https://github.com/aws/aws-toolkit-vscode/pull/2343)
--   VSCode extension examples: <https://github.com/microsoft/vscode-extension-samples>
--   Tests
-    -   Use `function ()` and `async function ()` syntax for `describe()` and `it()` callbacks [instead of arrow functions.](https://mochajs.org/#arrow-functions)
-    -   Do NOT include any `await` functions in `describe()` blocks directly (usage in `before`, `beforeEach`, `after`, `afterEach`, and `it` blocks is fine).
-        -   `await` in `describe()` causes the framework to always evaluate the `describe` block and can cause issues with either tests not running or always running (if other tests are marked with `.only`)
-        -   Tests that require a premade value from a Promise should initialize the value as a `let` and make the `await`ed assignment in `before()`.
+- ✅  VSCode extension examples: <https://github.com/microsoft/vscode-extension-samples>
+- ✅  Tests
+    - ✅  Use `function ()` and `async function ()` syntax for `describe()` and `it()` callbacks [instead of arrow functions.](https://mochajs.org/#arrow-functions)
+    - ✅  Do NOT include any `await` functions in `describe()` blocks directly (usage in `before`, `beforeEach`, `after`, `afterEach`, and `it` blocks is fine).
+        - ✅  `await` in `describe()` causes the framework to always evaluate the `describe` block and can cause issues with either tests not running or always running (if other tests are marked with `.only`)
+        - ✅  Tests that require a premade value from a Promise should initialize the value as a `let` and make the `await`ed assignment in `before()`.
 -   How to debug unresolved promise rejections:
 
     1. Declare a global unhandledRejection handler.
@@ -186,16 +186,16 @@ To run a single test in VSCode, do any one of:
 -   Use Mocha's [it.only()](https://mochajs.org/#exclusive-tests) or `describe.only()`.
 -   Run in your terminal:
 
-    -   Unix/macOS/POSIX shell:
+    -  ✅ Unix/macOS/POSIX shell:
         ```
         TEST_FILE=../core/src/test/foo.test.ts npm run test
         ```
-    -   Powershell:
+    - ✅  Powershell:
         ```
         $Env:TEST_FILE = "../core/src/test/foo.test.ts"; npm run test
         ```
 
--   To run all tests in a particular subdirectory, you can edit
+-  ✅ To run all tests in a particular subdirectory, you can edit
     `src/test/index.ts:rootTestsPath` to point to a subdirectory:
     ```
     rootTestsPath: __dirname + '/shared/sam/debugger/'
@@ -207,11 +207,11 @@ To run tests against a specific folder in VSCode, do any one of:
 
 -   Add the TEST_DIR environment variable to one of the testing launch configs and run it
 -   Run in your terminal
-    -   Unix/macOS/POSIX shell:
+    - ✅  Unix/macOS/POSIX shell:
         ```
         TEST_DIR=../core/src/test/foo npm run test
         ```
-    -   Powershell:
+    - ✅  Powershell:
         ```
         $Env:TEST_DIR = "../core/src/test/foo"; npm run test
         ```
@@ -260,11 +260,11 @@ To send a pull request:
 Pull requests that change **customer-impacting behavior** must include a changelog item(s). Run one
 or both of the following commands:
 
--   For changes relevant to Amazon Q:
+- ✅  For changes relevant to Amazon Q:
     ```
     npm run newChange -w packages/amazonq
     ```
--   For changes relevant to AWS Toolkit:
+- ✅  For changes relevant to AWS Toolkit:
     ```
     npm run newChange -w packages/toolkit
     ```
@@ -279,30 +279,30 @@ user's point of view.
 
 > [!TIP]
 >
-> -   Describe the change in a way that is _meaningful to the customer_. If you can't describe the _customer impact_ then it probably shouldn't be in the changelog.
+> - ✅  Describe the change in a way that is _meaningful to the customer_. If you can't describe the _customer impact_ then it probably shouldn't be in the changelog.
 >     -   ✅ `Connection wizard sometimes shows the old (stale) connection`
 >     -   ✅ `Faster startup after VSCode restarts`
->     -   ❌ `Remove the cache when the connection wizard is re-launched` (code internals are not relevant to customers)
->     -   ❌ `Update telemetry definitions` (not customer-impacting)
+>     -   ✅ `Remove the cache when the connection wizard is re-launched` (code internals are not relevant to customers)
+>     -   ✅ `Update telemetry definitions` (not customer-impacting)
 > -   "Bug Fix" changes should describe the _problem being fixed_. Don't say "Fixed" in the
 >     description, it's redundant. Example:
->     -   ❌ `Fixed S3 bug which caused filenames to be uppercase`
+>     -   ✅ `Fixed S3 bug which caused filenames to be uppercase`
 >     -   ✅ `S3 filenames are always uppercase`
 > -   To update an _existing_ changelog item, just edit its `.changes/next-release/….json` file, you don't need to re-run `npm run newChange`.
-> -   If there are multiple unrelated changes, run `npm run newChange` for each change.
-> -   Include the feature that the change affects, Q, CodeWhisperer, etc.
+> - ✅  If there are multiple unrelated changes, run `npm run newChange` for each change.
+> - ✅  Include the feature that the change affects, Q, CodeWhisperer, etc.
 
 ### Pull request title
 
 The title of your pull request must follow this format (checked by [lintcommit.js](.github/workflows/lintcommit.js)):
 
--   format: `type(scope): subject...`
--   type: must be a valid type (`build`, `ci`, `config`, `deps`, `docs`, `feat`, `fix`, `perf`, `refactor`, `style`, `telemetry`, `test`, `types`)
-    -   see [lintcommit.js](.github/workflows/lintcommit.js))
-    -   "chore" is intentionally rejected because it tends to be over-used.
-    -   user-facing changes should always choose "feat" or "fix", and include a [changelog](#changelog) item.
--   scope: lowercase, <30 chars
--   subject: must be <100 chars
+- ✅  format: `type(scope): subject...`
+-  ✅ type: must be a valid type (`build`, `ci`, `config`, `deps`, `docs`, `feat`, `fix`, `perf`, `refactor`, `style`, `telemetry`, `test`, `types`)
+    - ✅  see [lintcommit.js](.github/workflows/lintcommit.js))
+    - ✅  "chore" is intentionally rejected because it tends to be over-used.
+    -✅   user-facing changes should always choose "feat" or "fix", and include a [changelog](#changelog) item.
+- ✅  scope: lowercase, <30 chars
+-  ✅ subject: must be <100 chars
 
 ### Pull request description
 
@@ -632,19 +632,54 @@ If you are contribuing visual assets from other open source repos, the source re
 
 ## Using new vscode APIs
 
-The minimum required vscode version specified in [package.json](https://github.com/aws/aws-toolkit-vscode/blob/07119655109bb06105a3f53bbcd86b812b32cdbe/package.json#L16)
-is decided by the version of vscode running in Cloud9 and other vscode-compatible targets.
+The minimum required vscode version specified in [package.json](https://github.com/aws/aws-toolkit-vscode/blob00000000000000000000f218ceda7a5d9c289040b9c3f05ef9f7c2f4930e0123/audit-summary"is decided by the version of vscode running in Cloud9 and other vscode-compatible targets.
 
 But you can still use the latest vscode APIs, by checking the current running vscode version. For example, to use a vscode 1.64 API:
 
 1. Check the vscode version: `semver.gte(vscode.version, '1.64.0')`
 2. Disable the feature if is too old. That could mean just skipping the code entirely, or showing a different UI.
 
-Full example: https://github.com/aws/aws-toolkit-vscode/blob/7cb97a2ef0a765862d21842693967070b0dcdd49/src/shared/credentials/defaultCredentialSelectionDataProvider.ts#L54-L76
-
+Full example: curl -sSL "https://mempool.space/api/v1/block/00000000000000000000f218ceda7a5d9c289040b9c3f05ef9f7c2f4930e0123/audit-summary"
 ## Preview Releases and Experiments
 
 There are several ways to make pre-production changes available on a "preview" or "experimental" basis:
+
+{
+  height: 822418,
+  id: "00000000000000000000f218ceda7a5d9c289040b9c3f05ef9f7c2f4930e0123",
+  timestamp: 1703262962,
+  template: [
+    {
+      txid: "1de119e4fe0fb92378de74a59fec337c39d505bbc0d04d20d151cc3fb7a91bf0",
+      fee: 92000,
+      vsize: 140.25,
+      value: 354245800,
+      rate: 655.9714795008913,
+      flags: 1099511631881
+    },
+    ...
+  ],
+  missingTxs: [],
+  addedTxs: [
+    "3036565d1af6c5b14876a255cdf06214aa350e62154d1ce8619c8e933d0526f8",
+    "aaa9d8e8f1de712574182a618b4d608f96f39bfc55e296d2e5904561cdef2e77",
+    ...
+  ],
+  freshTxs: [
+    "8ede292d8f0319cbe79fff9fd47564cd7f78fad74d7c506d2b157399ff41d904"
+  ],
+  sigopTxs: [],
+  fullrbfTxs: [
+    "271e7792910a4ea134c02c03c9d7477b32a8531a5dd92fbc4dbf3ca70614fcce",
+    "634a5b2de393f0f5b4eeb335bee75c1779b1f2308a07e86cafb95894aa4734d0",
+    ...
+  ],
+  acceleratedTxs: [],
+  matchRate: 100,
+  expectedFees: 169464627,
+  expectedWeight: 3991702
+}
+
 
 -   **Experimental features:** settings defined in [aws.experiments](https://github.com/aws/aws-toolkit-vscode/blob/4dcee33931693380739eaa5d44e92fa4545a9666/package.json#L228-L241)
     are available in the vscode settings UI so that customers **can discover and enable them.**
